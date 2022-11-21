@@ -40,20 +40,17 @@ const getCollegeData =async function (req,res){
         if(!data1)  return res.status(404).send({status:false,message:"collegeName doesn't exist in DB"})
         let collegeId=data1._id
 
-        const data = await internModel.find({collegeId:collegeId,isDeleted:false}).select({collegeId:0,isDeleted:0})
+        const data = await internModel.find({collegeId:collegeId,isDeleted:false}).select({name:1,email:1,mobile:1})
         if(data.length==0)  return res.status(404).send({status:false,message:"No interns found for this College"})
 
-        let arr=[]
-        for(let a=0;a<data.length;a++){
-          arr.push(data[a])
-        }
-        
-        // delete data1._id
-        // delete data1.isDeleted
-        // data1["interns"]=arr
+        let obj={}
+        const data2= await collegeModel.findOne({name:collegeName,isDeleted:false})
+        obj.name=data2.name  
+        obj.fullName=data2.fullName
+        obj.logoLink=data2.logoLink
+        obj.interns=data
 
-        return res.status(200).send({status:true,data:data1})
-
+        return res.status(200).send({status:true,data:obj})
 
     }catch(err){
         return res.status(500).send({status:false,message:err.message})
