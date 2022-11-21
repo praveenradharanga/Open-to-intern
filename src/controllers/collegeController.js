@@ -31,7 +31,6 @@ const createCollege =async function (req,res){
 const getCollegeData =async function (req,res){
 
     try{
-
         let colName = req.query
         let {collegeName} =colName
         if(Object.keys(colName).length==0) return res.status(400).send({status:false,message:"Please provide query param of collegeName"})
@@ -44,18 +43,16 @@ const getCollegeData =async function (req,res){
         if(data.length==0)  return res.status(404).send({status:false,message:"No interns found for this College"})
 
         let obj={}
-        const data2= await collegeModel.findOne({name:collegeName,isDeleted:false})
-        obj.name=data2.name  
-        obj.fullName=data2.fullName
-        obj.logoLink=data2.logoLink
-        obj.interns=data
-
+        obj.name=data1.name  
+        obj.fullName=data1.fullName
+        obj.logoLink=data1.logoLink
+        obj.interns=data 
+        
         return res.status(200).send({status:true,data:obj})
 
     }catch(err){
         return res.status(500).send({status:false,message:err.message})
     } 
 }
-
 
 module.exports={createCollege,getCollegeData}
