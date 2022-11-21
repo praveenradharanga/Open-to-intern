@@ -10,7 +10,7 @@ const isValidEmail = function (value) {
 
 //============================// idCharacterValid //============================
 
-const idCharacterValid = function (value) {
+const isIdValid = function (value) {
   return mongoose.Types.ObjectId.isValid(value); 
 };
 
@@ -30,6 +30,22 @@ const isValidName = function (name) {
   }
 };
 
+//==============================// isValidMobile //===============================
+
+const isValidMobile = function (mobile) {
+ if (/^[0]?[789]\d{9}$/.test(mobile)){
+    return true
+ }
+}
+
+//==============================// isValidImage //===============================
+
+const isValidImage = function (mobile) {
+    if (/^(https\:\/\/.*\.(?:png|jpg))/.test(mobile)){
+       return true
+    }
+   }
+
 //=============================// module exports //==============================
 
-module.exports = { isValidEmail, idCharacterValid, isValidString,isValidName}
+module.exports = { isValidEmail, isIdValid, isValidString,isValidName,isValidMobile,isValidImage}
