@@ -4,7 +4,6 @@ const collegeModel=require('../models/collegeModel')
 const {isValidMobile,isValidEmail,isValidString,isValidName,isIdValid}=require('../validators/validations')
 
 const createIntern =async function (req,res){
-
     try{
         let data = req.body
         let {name,email,mobile,collegeId}=data
@@ -34,6 +33,5 @@ const createIntern =async function (req,res){
         return res.status(500).send({status:false,message:err.message})
     }  
 }
-
 
 module.exports.createIntern=createIntern

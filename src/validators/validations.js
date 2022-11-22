@@ -40,8 +40,8 @@ const isValidMobile = function (mobile) {
 
 //==============================// isValidImage //===============================
 
-const isValidImage = function (mobile) {
-    if (/^(https\:\/\/.*\.(?:png|jpg))/.test(mobile)){
+const isValidImage = function (image) {
+    if (/^(https\:\/\/.*\.(?:png|jpg|jpeg))/.test(image)){
        return true
     }
    }

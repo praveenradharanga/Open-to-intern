@@ -6,8 +6,9 @@ const {isValidString,isValidName,isValidImage}=require('../validators/validation
 const createCollege =async function (req,res){
 
     try{
-        let data = req.body
+        let data=req.body
         let {name,fullName,logoLink}=data
+        
         if(Object.keys(data).length==0)   return res.status(400).send({status:false,message:"Request body cannot be empty"})
         
         if(!name)  return res.status(400).send({status:false,message:"name is required"})
@@ -31,11 +32,10 @@ const createCollege =async function (req,res){
 const getCollegeData =async function (req,res){
 
     try{
-        let colName = req.query
-        let {collegeName} =colName
-        if(Object.keys(colName).length==0) return res.status(400).send({status:false,message:"Please provide query param of collegeName"})
+        let {collegeName}= req.query
+        if(Object.keys(req.query).length==0) return res.status(400).send({status:false,message:"Please provide query param of collegeName"})
         
-        const data1= await collegeModel.findOne({name:collegeName,isDeleted:false})
+        const data1= await collegeModel.findOne({$or:[{name:collegeName},{fullName:collegeName}]},{isDeleted:false})
         if(!data1)  return res.status(404).send({status:false,message:"collegeName doesn't exist in DB"})
         let collegeId=data1._id
 
