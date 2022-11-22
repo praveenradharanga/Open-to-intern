@@ -1,12 +1,12 @@
 {
   "name": "project-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Open_to_Intern",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sarwjeet Kumar Srivastava, Praveen Kumar K R, Siddhant Yerandkar, Anurag Khare",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",

@@ -3,6 +3,8 @@ const collegeModel= require('../models/collegeModel')
 const internModel=require('../models/InternModel')
 const {isValidString,isValidName,isValidImage}=require('../validators/validations')
 
+/******************************** Create College  *******************************/
+
 const createCollege =async function (req,res){
 
     try{
@@ -28,6 +30,8 @@ const createCollege =async function (req,res){
         return res.status(500).send({status:false,message:err.message})
     }  
 }
+
+/******************************** Get College Details ***********************************/
 
 const getCollegeData =async function (req,res){
 
