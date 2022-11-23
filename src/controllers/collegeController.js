@@ -16,7 +16,7 @@ const createCollege =async function (req,res){
         if(!name)  return res.status(400).send({status:false,message:"name is required"})
         if(!isValidString(name) || !isValidName(name) ) return res.status(400).send({status:false,message:"Please provide valid name"})
         const data1= await collegeModel.findOne({name:name})
-        if(data1)  return res.status(400).send({status:false,message:"name is already present in Intern DB"})
+        if(data1)  return res.status(400).send({status:false,message:"name is already present in College DB"})
        
         if(!fullName)  return res.status(400).send({status:false,message:"fullName is required"})
         if(!isValidString(fullName) || !isValidName(fullName) ) return res.status(400).send({status:false,message:"Please provide valid fullName"})

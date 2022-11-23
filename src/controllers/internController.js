@@ -8,7 +8,7 @@ const {isValidMobile,isValidEmail,isValidString,isValidName,isIdValid}=require('
 const createIntern =async function (req,res){
     try{
         let data = req.body
-        let {name,email,mobile,collegeId}=data
+        let {name,email,mobile,collegeName}=data
         if(Object.keys(data).length==0)   return res.status(400).send({status:false,message:"Request body cannot be empty"})
         
         if(!name)  return res.status(400).send({status:false,message:"name is required"})
@@ -24,11 +24,13 @@ const createIntern =async function (req,res){
         const data2= await internModel.findOne({mobile:mobile})
         if(data2)  return res.status(400).send({status:false,message:"mobile number is already present in Intern DB"})
 
-        if(!collegeId) return res.status(400).send({status:false,message:"collegeId is required"})
-        if(!isIdValid(collegeId)) return res.status(400).send({status:false,message:"Please provide valid collegeId"})
-        const data1= await collegeModel.findOne({_id:collegeId})
-        if(!data1)  return res.status(400).send({status:false,message:"CollegeId doesn't exist in college DB"})
+        if(!collegeName) return res.status(400).send({status:false,message:"collegeName is required"})
+        if(!isValidString(collegeName) || !isValidName(collegeName) ) return res.status(400).send({status:false,message:"Please provide valid collegeName"})
+        const data1= await collegeModel.findOne({name:collegeName})
+        if(!data1)  return res.status(400).send({status:false,message:"collegeName doesn't exist in college DB"})
  
+        delete data.collegeName
+        data.collegeId= data1._id
         const savedData = await internModel.create(data)
         return res.status(201).send({status:true,data:savedData})
     }catch(err){
