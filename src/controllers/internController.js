@@ -1,7 +1,7 @@
 
 const internModel= require('../models/InternModel')
 const collegeModel=require('../models/collegeModel')
-const {isValidMobile,isValidEmail,isValidString,isValidName,isIdValid}=require('../validators/validations')
+const {isValidMobile,isValidEmail,isValidString,isValidName}=require('../validators/validations')
 
 /******************************** Create Intern *******************************/
 
@@ -39,3 +39,6 @@ const createIntern =async function (req,res){
 }
 
 module.exports.createIntern=createIntern
+
+
+

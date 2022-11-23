@@ -10,7 +10,7 @@ router.post('/functionup/interns',internController.createIntern)
 
 router.get('/functionup/collegeDetails',collegeController.getCollegeData)
 
-router.all("/*",function (){
+router.all("/*",function (req,res){
     return res.status(404).send({status:false,message:"Page Not Found"})
 })
 
